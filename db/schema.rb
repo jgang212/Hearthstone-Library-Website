@@ -12,8 +12,9 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
-  create_table "cards", force: :cascade do |t|
+  create_table "cards", id: :text, force: :cascade do |t|
     t.text "name"
+    t.index ["id"], name: "sqlite_autoindex_cards_1", unique: true
   end
 
 end

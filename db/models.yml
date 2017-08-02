@@ -1,5 +1,6 @@
 Card
   name: text
+  id: text
 
 
 # This file allows you to specify your domain model

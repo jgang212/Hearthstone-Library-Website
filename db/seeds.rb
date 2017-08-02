@@ -10,7 +10,10 @@
 Card.delete_all
 card_data = JSON.parse(open('db/cards_truncated.json').read)
 card_data.each do |data|
- 	c = Card.create name: data['name']
+	#if !['HERO_POWER', 'ENCHANTMENT'].include?(data['type'])
+	#if (data['type'] != 'HERO_POWER')
+ 	c = Card.create name: data['name'],
+ 					id: data['id']
 end
 
 puts "#{Card.count} cards."

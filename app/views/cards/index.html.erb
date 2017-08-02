@@ -2,37 +2,17 @@
 
   <% @cards.each do |c| %>
 
-  <%= c.name %>
-
   <!-- Product Thumbnail -->
-<!--   <div class="col-sm-6 col-md-3">
+  <div class="col-sm-6 col-md-3">
     <div class="thumbnail">
 
-      <% photo_url = p.photo_url %>
-      <% if photo_url.blank? %>
-      <%   photo_url = "http://via.placeholder.com/350x350?text=no+photo" %>
-      <% end %>
-
+      <% photo_url = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/" + c.id + ".png" %>
       <%= link_to image_tag(photo_url),
-                  "/products/#{p.id}",
-                  alt: "Echo Dot", class: 'img-responsive' %>
+                  "/cards/#{c.id}",
+                  class: 'img-responsive' %>
 
-      <div class="caption">
-        <h4><%= link_to p.title, "/products/#{p.id}"%></h4>
-        <p class="rating">&bigstar;&bigstar;&bigstar;&bigstar;&star;</p>
-        <p>6 reviews.</p>
-        <p>Sold by: <%= link_to 'Cookie Monster', '#' %></p>
-
-        <p>
-          <%= truncate p.description, length: 40 %>
-          <%= link_to "[see more]", '/products/1' %>
-        </p>
-        <p class="price"><%= number_to_currency(p.price / 100.0) %></p>
-        <p><a href="/orders/new?product_id=<%= p.id %>" class="btn btn-primary" role="button">Buy Now</a>
-        </p>
-      </div>
     </div>
-  </div> -->
+  </div>
 
   <% end %>
 </div>

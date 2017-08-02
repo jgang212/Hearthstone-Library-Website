@@ -1,0 +1,14 @@
+<div class="page-header">
+  <h1><%= @card.name %>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+
+    <% photo_url = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/" + @card.id + ".png" %>
+
+    <%= image_tag photo_url,
+                  class: 'img-responsive' %>
+  </div>
+</div>
