@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Reset the 'cards' table
+Card.delete_all
+card_data = JSON.parse(open('db/cards_truncated.json').read)
+card_data.each do |data|
+ 	c = Card.create name: data['name']
+end
+
+puts "#{Card.count} cards."

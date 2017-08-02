@@ -12,4 +12,8 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  create_table "cards", force: :cascade do |t|
+    t.text "name"
+  end
+
 end
