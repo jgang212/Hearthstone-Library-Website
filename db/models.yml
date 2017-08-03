@@ -2,6 +2,17 @@ Card
   name: text
   id: text
 
+Filter
+  user_id: integer
+  filter_name: text
+  name: text
+
+User
+  name: text
+  email: text
+  password_digest: text
+  created_at: text
+  updated_at: text
 
 # This file allows you to specify your domain model
 # in .yml format.  Use `rails db:migrate` to apply your

@@ -8,5 +8,15 @@ Rails.application.routes.draw do
 
   get '/cards/:id' => 'cards#show'
 
-  # patch favorites, forget the deck
+  # Filters
+  resources :filters
+
+  # Users
+  resources :users
+
+  # Sessions
+  get '/sessions/new' => 'sessions#new', as: 'new_session'
+  post '/sessions' => 'sessions#create'
+
+  delete '/logout' => 'sessions#destroy'
 end

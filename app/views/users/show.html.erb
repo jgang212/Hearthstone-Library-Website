@@ -1,0 +1,59 @@
+<style>
+  /* formatting for table on index page */
+  td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+  }
+  /* alternating row colors in table */
+  tr:nth-child(even) {
+      background-color: #F9F9F9;
+  }
+</style>
+
+<div class="page-header">
+  <h1>My Account</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <p>
+      <strong>Name:</strong> <%= @user.name %>
+    </p>
+
+    <p>
+      <strong>Email Address:</strong> <%= @user.email %>
+    </p>
+
+    <p>
+      <strong>Password:</strong> <%= @user.password %>
+    </p>
+
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-sm-12">
+  <p>Existing filters:</p>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+
+    <% @filters.each do |f| %>
+    <tr>
+      <td><%= f.id %></td>
+      <td><%= link_to f.filter_name, "/filters/#{f.id}" %></td>
+      <td><%= link_to "Delete", "/filters/#{f.id}", method: 'delete', data: { confirm: "Are you sure?" } %></td>
+      <td><%= link_to "Edit", "/filters/#{f.id}/edit" %></td>
+    </tr>
+    <% end %>
+  </table>
+  <hr>
+  </div>
+</div>

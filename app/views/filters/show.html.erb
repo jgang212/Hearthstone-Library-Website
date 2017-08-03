@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1><%= @filter.filter_name %>
+  </h1>
+</div>
+
+<%= link_to "Edit This Filter", "/filters/#{@filter.id}/edit" %>
+|
+<%= link_to "Delete This Filter", "/filters/#{@filter.id}", method: 'delete', data: { confirm: "Are you sure?" } %>
+|
+<%= link_to "Back To Filters", "/filters/" %>
+<hr>
+<%= "name: " + @filter.name %>
+<hr>
+
+<div class="row">
+	<% result = false %>
+	<% @cards.each do |c| %>
+		<% if c.name.downcase.include? @filter.name.downcase %>
+			<% result = true %>
+		  	<div class="col-sm-6 col-md-3">
+			    <div class="thumbnail">
+			      <% photo_url = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/" + c.id + ".png" %>
+			      <%= link_to image_tag(photo_url),
+			                  "/cards/#{c.id}",
+			                  class: 'img-responsive' %>
+			    </div>
+		  	</div>	
+	  	<% end %>	  	
+  	<% end %>
+  	<% if !result %>
+  		<p>No results found.</p>
+  	<% end %>
+</div>

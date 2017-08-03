@@ -17,4 +17,19 @@ ActiveRecord::Schema.define(version: 0) do
     t.index ["id"], name: "sqlite_autoindex_cards_1", unique: true
   end
 
+  create_table "filters", force: :cascade do |t|
+    t.text "name"
+    t.text "filter_name"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_filters_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.text "name"
+    t.text "email"
+    t.text "created_at"
+    t.text "updated_at"
+    t.text "password_digest"
+  end
+
 end

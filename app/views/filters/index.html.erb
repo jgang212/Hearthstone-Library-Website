@@ -1,0 +1,37 @@
+<style>
+  /* formatting for table on index page */
+  td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+  }
+  /* alternating row colors in table */
+  tr:nth-child(even) {
+      background-color: #F9F9F9;
+  }
+</style>
+
+<div class="row">
+
+  <p>Existing filters:</p>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+
+    <% @filters.each do |f| %>
+    <tr>
+      <td><%= f.id %></td>
+      <td><%= link_to f.filter_name, "/filters/#{f.id}" %></td>
+      <td><%= link_to "Delete", "/filters/#{f.id}", method: 'delete', data: { confirm: "Are you sure?" } %></td>
+      <td><%= link_to "Edit", "/filters/#{f.id}/edit" %></td>
+    </tr>
+    <% end %>
+  </table>
+  <hr>
+  <p><a href="/filters/new" class="btn btn-primary" role="button">Create Filter</a></p>
+</div>
