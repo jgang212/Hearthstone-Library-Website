@@ -8,15 +8,16 @@ Rails.application.routes.draw do
 
   get '/cards/:id' => 'cards#show'
 
+  # Sessions
+  get '/sessions/new' => 'sessions#new', as: 'new_session'
+  post '/sessions' => 'sessions#create'
+
+  delete '/logout' => 'sessions#destroy'
+
   # Filters
   resources :filters
 
   # Users
   resources :users
 
-  # Sessions
-  get '/sessions/new' => 'sessions#new', as: 'new_session'
-  post '/sessions' => 'sessions#create'
-
-  delete '/logout' => 'sessions#destroy'
 end

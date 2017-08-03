@@ -15,6 +15,7 @@
 <div class="row">
 	<% result = false %>
 	<% @cards.each do |c| %>
+		<!-- Filter for name, not case-sensitive, and can include text -->
 		<% if c.name.downcase.include? @filter.name.downcase %>
 			<% result = true %>
 		  	<div class="col-sm-6 col-md-3">

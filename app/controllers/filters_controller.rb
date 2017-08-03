@@ -1,3 +1,4 @@
+# all of this is only accessible if logged in
 class FiltersController < ApplicationController
 
 	def index
@@ -35,7 +36,7 @@ class FiltersController < ApplicationController
 	    else
 		    @filter = Filter.new
 		    @filter.filter_name = params["filter_name"]	   
-		    @filter.name = params["name"]
+		    @filter.name = params["name"] # will have more filters in the future
 		    @filter.user = user
 		    if @filter.save
 		      	redirect_to "/filters/#{@filter.id}", notice: 'Filter successfully created.'	    

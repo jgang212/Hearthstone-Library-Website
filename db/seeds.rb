@@ -14,6 +14,7 @@ eliott = User.create name: 'Eliott Joo', email: 'eliott@example.com', password: 
 
 # Reset the 'cards' table
 Card.delete_all
+# only use a small sample of ~1200 total cards for now
 card_data = JSON.parse(open('db/cards_truncated.json').read)
 card_data.each do |data|
  	c = Card.create name: data['name'],

@@ -5,7 +5,8 @@ Card
 Filter
   user_id: integer
   filter_name: text
-  name: text
+  name: text  # this is the name of card
+  # will have more filters in the future
 
 User
   name: text

@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "filters", force: :cascade do |t|
-    t.text "name"
-    t.text "filter_name"
     t.integer "user_id"
+    t.text "filter_name"
+    t.text "name"
     t.index ["user_id"], name: "index_filters_on_user_id"
   end
 
