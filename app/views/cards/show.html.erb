@@ -10,7 +10,17 @@
 
     <%= image_tag photo_url,
                   class: 'img-responsive' %>
-
-    <!-- Will show more info in future -->
+  </div>
+  <div class="col-sm-8">
+  	<br /><br /><br />
+    <h3>INFORMATION</h3>
+    <p><b>Type: </b><%= @card.cardType %></p>
+    <p><b>Class: </b><%= @card.cardClass %></p>
+    <p><b>Rarity: </b><%= @card.rarity %></p>
+    <p><b>Set: </b><%= @card.set %></p>
+    <p><b>Faction: </b><%= if @card.faction then @card.faction else "N/A" end %></p>
+    <p><b>Artist: </b><%= @card.artist %></p>
+    <br /><br /><br />
+    <p><b>Flavor Text: </b><i><%= @card.flavor %></i></p>
   </div>
 </div>

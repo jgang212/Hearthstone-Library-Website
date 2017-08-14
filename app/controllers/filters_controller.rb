@@ -37,6 +37,7 @@ class FiltersController < ApplicationController
 		    @filter = Filter.new
 		    @filter.filter_name = params["filter_name"]	   
 		    @filter.name = params["name"] # will have more filters in the future
+		    @filter.artist = params["artist"]
 		    @filter.user = user
 		    if @filter.save
 		      	redirect_to "/filters/#{@filter.id}", notice: 'Filter successfully created.'	    
@@ -63,6 +64,7 @@ class FiltersController < ApplicationController
 		    @filter = Filter.find_by(id: params["id"])
 		    @filter.filter_name = params["filter_name"]
 		    @filter.name = params["name"]
+		    @filter.artist = params["artist"]
 		    @filter.user = user
 		    if @filter.save
 		      	redirect_to "/filters/#{@filter.id}", notice: 'Filter successfully updated.'

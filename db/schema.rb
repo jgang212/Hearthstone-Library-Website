@@ -14,6 +14,21 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "cards", id: :text, force: :cascade do |t|
     t.text "name"
+    t.text "flavor"
+    t.text "text"
+    t.text "artist"
+    t.integer "attack"
+    t.text "cardClass"
+    t.integer "cost"
+    t.text "faction"
+    t.integer "health"
+    t.text "mechanics"
+    t.text "multiClassGroup"
+    t.text "race"
+    t.text "rarity"
+    t.text "set"
+    t.text "type"
+    t.text "cardType"
     t.index ["id"], name: "sqlite_autoindex_cards_1", unique: true
   end
 
@@ -21,6 +36,18 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "user_id"
     t.text "filter_name"
     t.text "name"
+    t.text "artist"
+    t.integer "attack"
+    t.text "cardClass"
+    t.integer "cost"
+    t.text "faction"
+    t.integer "health"
+    t.text "mechanics"
+    t.text "multiClassGroup"
+    t.text "race"
+    t.text "rarity"
+    t.text "set"
+    t.text "cardType"
     t.index ["user_id"], name: "index_filters_on_user_id"
   end
 

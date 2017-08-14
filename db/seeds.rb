@@ -18,7 +18,21 @@ Card.delete_all
 card_data = JSON.parse(open('db/cards_truncated.json').read)
 card_data.each do |data|
  	c = Card.create name: data['name'],
- 					id: data['id']
+ 					id: data['id'],
+ 					text: data['text'],
+ 					flavor: data['flavor'],
+ 					artist: data['artist'],
+ 					attack: data['attack'],
+ 					cardClass: data['cardClass'],
+ 					cost: data['cost'],
+ 					faction: data['faction'],
+ 					health: data['health'],
+ 					multiClassGroup: data['multiClassGroup'],
+ 					race: data['race'],
+ 					rarity: data['rarity'],
+ 					set: data['set'],
+ 					cardType: data['type'],
+ 					mechanics: data['mechanics']
 end
 
 # Reset the 'Filters' table
