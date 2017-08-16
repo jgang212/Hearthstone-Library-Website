@@ -17,7 +17,7 @@
 	<% result = false %>
 	<% @cards.each do |c| %>
 		<!-- Filter for name, not case-sensitive, and can include text -->
-		<% if (c.name.downcase.include? @filter.name.downcase) and (c.artist.downcase.include? @filter.artist.downcase) %>
+		<% if ((not c.name?) or (c.name.downcase.include? @filter.name.downcase)) and ((not c.artist?) or (c.artist.downcase.include? @filter.artist.downcase)) %>
 			<% result = true %>
 		  	<div class="col-sm-6 col-md-3">
 			    <div class="thumbnail">

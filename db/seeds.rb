@@ -14,25 +14,26 @@ eliott = User.create name: 'Eliott Joo', email: 'eliott@example.com', password: 
 
 # Reset the 'cards' table
 Card.delete_all
-# only use a small sample of ~1200 total cards for now
-card_data = JSON.parse(open('db/cards_truncated.json').read)
+card_data = JSON.parse(open('db/cards.json').read)
 card_data.each do |data|
- 	c = Card.create name: data['name'],
- 					id: data['id'],
- 					text: data['text'],
- 					flavor: data['flavor'],
- 					artist: data['artist'],
- 					attack: data['attack'],
- 					cardClass: data['cardClass'],
- 					cost: data['cost'],
- 					faction: data['faction'],
- 					health: data['health'],
- 					multiClassGroup: data['multiClassGroup'],
- 					race: data['race'],
- 					rarity: data['rarity'],
- 					set: data['set'],
- 					cardType: data['type'],
- 					mechanics: data['mechanics']
+	if data['type'] != 'HERO' #exclude hero cards
+	 	c = Card.create name: data['name'],
+	 					id: data['id'],
+	 					text: data['text'],
+	 					flavor: data['flavor'],
+	 					artist: data['artist'],
+	 					attack: data['attack'],
+	 					cardClass: data['cardClass'],
+	 					cost: data['cost'],
+	 					faction: data['faction'],
+	 					health: data['health'],
+	 					multiClassGroup: data['multiClassGroup'],
+	 					race: data['race'],
+	 					rarity: data['rarity'],
+	 					set: data['set'],
+	 					cardType: data['type'],
+	 					mechanics: data['mechanics']
+	end
 end
 
 # Reset the 'Filters' table
