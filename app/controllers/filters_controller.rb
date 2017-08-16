@@ -20,7 +20,7 @@ class FiltersController < ApplicationController
   		user = User.find_by(id: session[:user_id])
 	    @filter = Filter.new
 	    @filter.filter_name = params["filter_name"]	   
-	    @filter.name = params["name"] # will have more filters in the future
+	    @filter.name = params["name"]
 	    @filter.artist = params["artist"]
 	    @filter.user = user
 	    if @filter.save
