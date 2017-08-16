@@ -11,25 +11,36 @@
 <hr>
 <p><%= "Card Name: " + @filter.name %></p>
 <p><%= "Artist: " + @filter.artist %></p>
-<hr>
 
 <div class="row">
-	<% result = false %>
+	<% count = 0 %>
 	<% @cards.each do |c| %>
 		<!-- Filter for name, not case-sensitive, and can include text -->
 		<% if ((not c.name?) or (c.name.downcase.include? @filter.name.downcase)) and ((not c.artist?) or (c.artist.downcase.include? @filter.artist.downcase)) %>
-			<% result = true %>
-		  	<div class="col-sm-6 col-md-3">
-			    <div class="thumbnail">
-			      <% photo_url = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/" + c.id + ".png" %>
-			      <%= link_to image_tag(photo_url),
-			                  "/cards/#{c.id}",
-			                  class: 'img-responsive' %>
-			    </div>
-		  	</div>	
+			<% count += 1 %>	
 	  	<% end %>	  	
   	<% end %>
-  	<% if !result %>
+  	<% if count == 0 %>
+  		<hr>
   		<p>No results found.</p>
+  		<hr>
+  	<% else %>
+  		<hr>
+  		<p><%= count %> result(s) found.</p>
+  		<hr>
+  		<% @cards.each do |c| %>
+	  		<!-- Filter for name, not case-sensitive, and can include text -->
+			<% if ((not c.name?) or (c.name.downcase.include? @filter.name.downcase)) and ((not c.artist?) or (c.artist.downcase.include? @filter.artist.downcase)) %>
+				<% count += 1 %>
+			  	<div class="col-sm-6 col-md-3">
+				    <div class="thumbnail">
+				      <% photo_url = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/" + c.id + ".png" %>
+				      <%= link_to image_tag(photo_url),
+				                  "/cards/#{c.id}",
+				                  class: 'img-responsive' %>
+				    </div>
+			  	</div>	
+		  	<% end %>
+		<% end %>
   	<% end %>
 </div>

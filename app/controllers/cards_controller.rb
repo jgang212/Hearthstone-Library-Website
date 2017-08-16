@@ -5,7 +5,7 @@ class CardsController < ApplicationController
 	    @cards = Card.all
 	end
 
-	# show single card (will have more info later)
+	# show single card
 	def show
 		@card = Card.find_by(id: params["id"])
 	end
