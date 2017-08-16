@@ -1,87 +1,65 @@
 # all of this is only accessible if logged in
 class FiltersController < ApplicationController
+	before_action :require_login
 
 	def index
 		user = User.find_by(id: session[:user_id])
-	    if user.blank?
-	      redirect_to root_url, notice: "You need to login first."
-	    else
-	      @filters = Filter.all
-	    end	    
+	    @filters = user.filters    
 	end
 
 	def show
-		user = User.find_by(id: session[:user_id])
-	    if user.blank?
-	      redirect_to root_url, notice: "You need to login first."
-	    else
-			@filter = Filter.find_by(id: params["id"])
-			@cards = Card.all
-		end
+		@filter = Filter.find_by(id: params["id"])
+		@cards = Card.all
 	end
 
 	def new
-		user = User.find_by(id: session[:user_id])
-	    if user.blank?
-	      redirect_to root_url, notice: "You need to login first."
-	    else
-	      @filter = Filter.new
-	    end    	
+      	@filter = Filter.new  	
   	end
 
   	def create
   		user = User.find_by(id: session[:user_id])
-	    if user.blank?
-	      redirect_to root_url, notice: "You need to login first."
+	    @filter = Filter.new
+	    @filter.filter_name = params["filter_name"]	   
+	    @filter.name = params["name"] # will have more filters in the future
+	    @filter.artist = params["artist"]
+	    @filter.user = user
+	    if @filter.save
+	      	redirect_to "/filters/#{@filter.id}", notice: 'Filter successfully created.'	    
 	    else
-		    @filter = Filter.new
-		    @filter.filter_name = params["filter_name"]	   
-		    @filter.name = params["name"] # will have more filters in the future
-		    @filter.artist = params["artist"]
-		    @filter.user = user
-		    if @filter.save
-		      	redirect_to "/filters/#{@filter.id}", notice: 'Filter successfully created.'	    
-		    else
-		      render "new"
-		    end
-		end
+	      render "new"
+	    end	
 	end
 
 	def edit
-		user = User.find_by(id: session[:user_id])
-	    if user.blank?
-	      redirect_to root_url, notice: "You need to login first."
-	    else
-	    	@filter = Filter.find_by(id: params["id"])
-	    end
+    	@filter = Filter.find_by(id: params["id"])
 	end
 
 	def update
 		user = User.find_by(id: session[:user_id])
-	    if user.blank?
-	      redirect_to root_url, notice: "You need to login first."
+	    @filter = Filter.find_by(id: params["id"])
+	    @filter.filter_name = params["filter_name"]
+	    @filter.name = params["name"]
+	    @filter.artist = params["artist"]
+	    @filter.user = user
+	    if @filter.save
+	      	redirect_to "/filters/#{@filter.id}", notice: 'Filter successfully updated.'
 	    else
-		    @filter = Filter.find_by(id: params["id"])
-		    @filter.filter_name = params["filter_name"]
-		    @filter.name = params["name"]
-		    @filter.artist = params["artist"]
-		    @filter.user = user
-		    if @filter.save
-		      	redirect_to "/filters/#{@filter.id}", notice: 'Filter successfully updated.'
-		    else
-		      	render "edit"
-		    end
-		end
+	      	render "edit"
+	    end
   	end
 
   	def destroy
-  		user = User.find_by(id: session[:user_id])
+	    filter = Filter.find_by(id: params["id"])
+	    filter.delete
+	    redirect_to "/filters",  notice: 'Filter deleted!'
+  	end
+
+  	private
+ 
+	def require_login
+		user = User.find_by(id: session[:user_id])
 	    if user.blank?
-	      redirect_to root_url, notice: "You need to login first."
-	    else
-		    filter = Filter.find_by(id: params["id"])
-		    filter.delete
-		    redirect_to "/filters",  notice: 'Filter deleted!'
-		end
+	    	redirect_to root_url, notice: "You need to login first."
+	    end
   	end
 end

@@ -15,23 +15,28 @@
 
   <p>Existing filters:</p>
 
-  <table>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th> </th>
-      <th> </th>
-    </tr>
+  <% if @filters[0] %>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th> </th>
+        <th> </th>
+      </tr>
 
-    <% @filters.each do |f| %>
-    <tr>
-      <td><%= f.id %></td>
-      <td><%= link_to f.filter_name, "/filters/#{f.id}" %></td>
-      <td><%= link_to "Delete", "/filters/#{f.id}", method: 'delete', data: { confirm: "Are you sure?" } %></td>
-      <td><%= link_to "Edit", "/filters/#{f.id}/edit" %></td>
-    </tr>
-    <% end %>
-  </table>
+      <% @filters.each do |f| %>
+      <tr>
+        <td><%= f.id %></td>
+        <td><%= link_to f.filter_name, "/filters/#{f.id}" %></td>
+        <td><%= link_to "Delete", "/filters/#{f.id}", method: 'delete', data: { confirm: "Are you sure?" } %></td>
+        <td><%= link_to "Edit", "/filters/#{f.id}/edit" %></td>
+      </tr>
+      <% end %>
+    </table>
+
+  <% else %>
+  <p><b>No filters yet!</b></p>
+  <% end %>  
   <hr>
   <p><a href="/filters/new" class="btn btn-primary" role="button">Create Filter</a></p>
 </div>
